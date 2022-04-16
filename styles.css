@@ -1,0 +1,9 @@
+.imgbox {
+    display: grid;
+    height: 100%;
+    margin: auto;
+    width: 100%;
+}
+.margin {
+    margin-bottom: 30px;
+}

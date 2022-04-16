@@ -1,0 +1,38 @@
+{
+    "enable": [
+        "enable",
+        "enable eye-controlled mouse"
+    ],
+    "disable": [
+        "disable",
+        "disable eye-controlled mouse"
+    ],
+    "up": [
+        "up",
+        "scroll up"
+    ],
+    "down": [
+        "down",
+        "scroll down"
+    ],
+    "left": [
+        "left",
+        "scroll left"
+    ],
+    "right": [
+        "right",
+        "scroll right"
+    ],
+    "type": [
+        "type",
+        "disables eye ctonrol and other word keybinds; listens for words to type"
+    ],
+    "enter": [
+        "enter",
+        "enables eye control and other word keybinds; presses enter"
+    ],
+    "app": [
+        "app",
+        "pulls up app"
+    ]
+}
