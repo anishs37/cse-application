@@ -1,12 +1,136 @@
 const electron = require('electron');
 const {ipcRenderer} = electron;
-const FRAMERATE = 1;
+const FRAMERATE = 0.5;
 const button = document.getElementById('arrow-button');
 const tf = require("@tensorflow/tfjs");
+//var toWav = require('audiobuffer-to-wav')
+//var mergeBuffers = require('merge-audio-buffers')
+var anchor = document.createElement('a')
+document.body.appendChild(anchor)
+anchor.style = 'display: none'
+// var recorder;
+// var blobs = [];
+
+// const desktopCapturer = {
+//     getSources: (opts) => ipcRenderer.invoke('DESKTOP_CAPTURER_GET_SOURCES', opts)
+// }
+
+// function startRecording() {
+//     console.log("Started Recording");
+//     desktopCapturer.getSources({ types: ['window', 'screen'] }, function(error, sources) {
+//         if (error) throw error;
+//         console.log("its passing");
+        
+//         navigator.webkitGetUserMedia({
+//             audio: true,
+//             video: false
+//         }, handleStream, handleUserMediaError);
+//         return;
+//     });
+// }
+
+// function handleStream(stream) {
+//     console.log("here")
+//     recorder = new MediaRecorder(stream);
+//     blobs = [];
+//     recorder.ondataavailable = function(event) {
+//         blobs.push(event.data);
+//     };
+//     recorder.start();
+// }
+
+// function stopRecording() {
+//     var save = function() {
+//         console.log(blobs);
+//         toArrayBuffer(new Blob(blobs, {type: 'audio/wav'}), function(ab) {
+//             console.log(ab);
+//             var buffer = toBuffer(ab);
+//             var file = `./example.wav`;
+//             fs.writeFile(file, buffer, function(err) {
+//                 if (err) {
+//                     console.error('Failed to save video ' + err);
+//                 } else {
+//                     console.log('Saved video: ' + file);
+//                 }
+//             });
+//         });
+//     };
+//     recorder.onstop = save;
+//     recorder.stop();
+// }
+
+// function handleUserMediaError(e) {
+//     console.error('handleUserMediaError', e);
+// }
+
+// function toArrayBuffer(blob, cb) {
+//     let fileReader = new FileReader();
+//     fileReader.onload = function() {
+//         let arrayBuffer = this.result;
+//         cb(arrayBuffer);
+//     };
+//     fileReader.readAsArrayBuffer(blob);
+// }
+
+// function toBuffer(ab) {
+//     let buffer = new Buffer(ab.byteLength);
+//     let arr = new Uint8Array(ab);
+//     for (let i = 0; i < arr.byteLength; i++) {
+//         buffer[i] = arr[i];
+//     }
+//     return buffer;
+// }
 let segmodel, gzmodel;
 let tims = new Array();
 let runningmid = 0;
 tf.loadLayersModel("../segmentation_256/model.json").then((mod) => {segmodel = mod}).catch((e) => {console.log(e); return e});
+button.addEventListener('click', function() {
+    if(button.innerText.toUpperCase() == "Enable".toUpperCase()){
+        //ipcRenderer.send('listener:start');
+        button.innerText = "Disable";
+        // startRecording();
+        // setTimeout(function() { stopRecording() }, 2000);
+        //const handleSuccess = function(stream) {
+        //    const context = new AudioContext();
+        //    const source = context.createMediaStreamSource(stream);
+        //    const processor = context.createScriptProcessor(1024, 1, 1);
+        //    var arrayOfBlobs = []
+        //    source.connect(processor);
+        //    processor.connect(context.destination);
+        //    processor.onaudioprocess = function(e) {
+        //    // Do something with the data, e.g. convert it to WAV
+        //    //console.log(e.inputBuffer);
+        //    var wav = toWav(e.inputBuffer)
+        //    //console.log(wav)
+        //    arrayOfBlobs.push(new Blob([wav]))
+        //    if(arrayOfBlobs.length > 500) {
+        //        const tracks = stream.getTracks();
+        //        tracks.forEach(function(track) {
+        //            track.stop();
+        //        });
+        //        // var url = window.URL.createObjectURL(blob)
+        //        // console.log(url);
+        //        ConcatenateBlobs(arrayOfBlobs, 'audio/wav', function(resultingBlob) {
+        //            console.log(arrayOfBlobs[0])
+        //            anchor.href = URL.createObjectURL(resultingBlob);
+        //            anchor.download = 'audio.wav'
+        //            anchor.click()
+        //        });
+        //        arrayOfBlobs = []
+        //        // window.URL.revokeObjectURL(url)
+        //        // return;
+        //    }
+        //}
+        //}
+        //navigator.mediaDevices
+        //    .getUserMedia({audio: true, video: false})
+        //    .then(handleSuccess);
+    }
+    else{
+        //ipcRenderer.send('listener:stop');
+        button.innerText = "Enable";
+    }
+});
 tf.loadLayersModel("../tracking_3/model.json").then((mod) => {gzmodel = mod}).catch((e) => {console.log(e); return e});
 const button2 = document.querySelector("#eye-button");
 let intervalId;
