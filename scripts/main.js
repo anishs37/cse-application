@@ -12,8 +12,8 @@ const button2 = document.querySelector("#eye-button");
 let intervalId;
 let time = Date.now();
 button2.addEventListener("click", ()=>{
-    sumtim = tims.reduce((a, b) => a + b, 0);
-    console.log(sumtim/tims.length)
+    //sumtim = tims.reduce((a, b) => a + b, 0);
+    //console.log(sumtim/tims.length)
     if(button2.innerText == "Wait just a moment") return;
     let dnow = Date.now();
     if(dnow - time < 1500){
@@ -117,26 +117,26 @@ button2.addEventListener("click", ()=>{
                                         }
                                     }
                                     let id2l = new ImageData(new Uint8ClampedArray(lnar), leftw, height);
-                                    console.log([leftw, height]);
-                                    require("fs").writeFileSync("testl.txt", id2l.data.toString());
+                                    //console.log([leftw, height]);
+                                    //require("fs").writeFileSync("testl.txt", id2l.data.toString());
                                     let id2r = new ImageData(new Uint8ClampedArray(rnar), rightw, height);
                                     //console.log([rightw, height]);
-                                    require("fs").writeFileSync("testr.txt", id2r.data.toString());
+                                    //require("fs").writeFileSync("testr.txt", id2r.data.toString());
                                     let t2l = tf.browser.fromPixels(id2l, 3)
                                     .resizeNearestNeighbor([36, 60], true)
                                     .toFloat()
                                     .expandDims();
-                                    require("fs").writeFileSync("testl2.txt", t2l.dataSync().toString());
+                                    //require("fs").writeFileSync("testl2.txt", t2l.dataSync().toString());
                                     let t2r = tf.browser.fromPixels(id2r, 3)
                                     .resizeNearestNeighbor([36, 60])
                                     .toFloat()
                                     .expandDims();
-                                    require("fs").writeFileSync("testr2.txt", t2r.dataSync().toString());
+                                    //require("fs").writeFileSync("testr2.txt", t2r.dataSync().toString());
                                     //let t2c = tf.stack([t2l, t2r]);
                                     //console.log(t2c)
                                     gzmodel.predict([t2l, t2r]).data().then(pred => {
-                                        console.log(pred[0]);
-                                        console.log(pred[1]);
+                                        //console.log(pred[0]);
+                                        //console.log(pred[1]);
                                         //let xc = pred[0] * 316.8;
                                         //let yc = pred[1] * 115.7;
                                         //console.log(xc);
