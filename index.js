@@ -6,11 +6,6 @@ const readline = require('readline')
 const fs = require('fs')
 const VirtualKeyboard = require('electron-virtual-keyboard');
 const {app, BrowserWindow, Menu, ipcMain} = electron
-<<<<<<< HEAD
-let video;
-let vkb;
-=======
->>>>>>> c08ca80c362a404f7a4b17edad35a746a0ea557f
 // SET ENV
 process.env.NODE_ENV = 'development'
 let mainWindow
@@ -104,7 +99,8 @@ function createKeyboardWindow() {
         boardWindow = null
     });
     ipcMain.on('close:board', function(e) {
-        boardWindow.close();
+        if(boardWindow != null)
+            boardWindow.close();
     });
     vkb = new VirtualKeyboard(boardWindow.webContents);
 }
