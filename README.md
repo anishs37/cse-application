@@ -5,7 +5,7 @@ Reimagining desktop accessibility.
 <br>
 For more information on this project, see the README of the main branch.
 ## How did we build it?
-Electron, along with Node.js, were used to build the application. We also implemented numerous APIs in order to provide as many high-quality features as possible, including RobotJS and Electron Virtual Keyboard.
+Multiple frameworks, languages, and platforms were utilized to build the application. Electron, along with Node.js, were used to build the application. We also implemented numerous APIs in order to provide as many high-quality features as possible, including RobotJS and Electron Virtual Keyboard.
 ## Demo
 
 ## Installation
@@ -20,6 +20,7 @@ Electron, along with Node.js, were used to build the application. We also implem
 - [x] Accessible
 ## Languages
 ![](https://img.shields.io/badge/Code-JavaScript-informational?style=flat&logo=JavaScript&logoColor=white&color=yellow)
+![](https://img.shields.io/badge/Code-HTML5-informational?style=flat&logo=HTML5&logoColor=white&color=red)
 ## What's next for Ctrl+Shift+Eye?
 We plan on making our gaze tracking model more accurate by researching more model frameworks. Additionally, we would like to train our model on a dataset where the coordinates returned by the model could be more easily translated and personalized to the user's screen size.
 
