@@ -7,3 +7,36 @@
 .margin {
     margin-bottom: 30px;
 }
+
+.bg-navy {
+    background-color: rgb(211, 231, 241) !important;
+}
+
+.bg-light {
+    background-color: hsl(0, 0%, 96%);
+  }
+
+.beige-color {
+    color: hsl(0, 0%, 21%) !important;
+  }
+
+  body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background-color: hsl(0, 0%, 96%);
+  }
+
+  .btn {
+    background-color: #1c1a50;
+    color: hsl(0, 0%, 90%);
+    transition:.25s;
+    height: 40px;
+    font-size: large;
+    border-radius: 4px;
+    text-transform: unset !important;
+    font-family: 'Julius Sans One', sans-serif !important;
+}
+
+.btn:hover {
+    background-color: hsl(219, 61.2%, 38.4%);
+    /* opacity: .85; */
+}

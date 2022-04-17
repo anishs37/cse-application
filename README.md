@@ -6,8 +6,6 @@ Reimagining desktop accessibility.
 For more information on this project, see the README of the main branch.
 ## How did we build it?
 Multiple frameworks, languages, and platforms were utilized to build the application. Electron, along with Node.js, were used to build the application. We also implemented numerous APIs in order to provide as many high-quality features as possible, including RobotJS and Electron Virtual Keyboard.
-## Demo
-
 ## Installation
 1. Install RobotJS <a href="http://robotjs.io/">here</a>.
 2. Install Electron <a href="https://www.npmjs.com/package/electron">here</a>.

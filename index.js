@@ -95,17 +95,19 @@ function createKeyboardWindow() {
         protocol: 'file:',
         slashes: true
     }));
+    vkb = new VirtualKeyboard(boardWindow.webContents);
     // Garbage collection handle
     boardWindow.on('close', function() {
         boardWindow = null
+        vkb = null
     });
     ipcMain.on('board:close', function(e, text) {
         if(boardWindow != null)
             boardWindow.close();
-            robot.typeStringDelayed(text, 180);
-            robot.keyTap("enter")
+            // console.log(text)
+            // robot.typeStringDelayed(text, 180);
+            // robot.keyTap("enter")
     });
-    vkb = new VirtualKeyboard(boardWindow.webContents);
 }
 // Create menu template
 const mainMenuTemplate = [
@@ -165,7 +167,7 @@ ipcMain.on("rc", (e) =>{
     robot.mouseClick("right");
 });
 ipcMain.on("mm", (e, xc, yc) => {
-    //console.log([xc, yc]);
+    console.log([xc, yc]);
     let ss = robot.getScreenSize();
     let sx = ss.width;
     let sy = ss.height;
