@@ -78,6 +78,30 @@ function createCalibrationWindow() {
         calWindow.close();
     });
 }
+function createKeyboardWindow() {
+    // Create new window
+    boardWindow = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        },
+        title: 'Keyboard',
+        fullscreen: true
+    });
+    // Load html into window
+    boardWindow.loadURL(url.format({
+        pathname: path.join(__dirname, './windows/keyboardWindow.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
+    // Garbage collection handle
+    boardWindow.on('close', function() {
+        boardWindow = null
+    });
+    ipcMain.on('close:board', function(e) {
+        boardWindow.close();
+    });
+}
 // Create menu template
 const mainMenuTemplate = [
     {
@@ -150,3 +174,7 @@ ipcMain.handle(
     'DESKTOP_CAPTURER_GET_SOURCES',
     (event, opts) => desktopCapturer.getSources(opts)
 )
+
+ipcMain.on('keyboard:open', function(e) {
+    createKeyboardWindow();
+})

@@ -85,9 +85,8 @@ let tims = new Array();
 let runningmid = 0;
 tf.loadLayersModel("../segmentation_256/model.json").then((mod) => {segmodel = mod}).catch((e) => {console.log(e); return e});
 button.addEventListener('click', function() {
-    if(button.innerText.toUpperCase() == "Enable".toUpperCase()){
-        //ipcRenderer.send('listener:start');
-        button.innerText = "Disable";
+    if(button.innerText.toUpperCase() == "Enable Keyboard".toUpperCase()){
+        ipcRenderer.send('keyboard:open')
         // startRecording();
         // setTimeout(function() { stopRecording() }, 2000);
         //const handleSuccess = function(stream) {
@@ -128,7 +127,7 @@ button.addEventListener('click', function() {
     }
     else{
         //ipcRenderer.send('listener:stop');
-        button.innerText = "Enable";
+        button.innerText = "Enable Keyboard";
     }
 });
 tf.loadLayersModel("../tracking_3/model.json").then((mod) => {gzmodel = mod}).catch((e) => {console.log(e); return e});

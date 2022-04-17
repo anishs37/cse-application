@@ -20,7 +20,7 @@
     "concatenateblobs": "^1.0.2",
     "deepspeech": "^0.9.3",
     "deepspeech-tflite": "^0.9.3",
-    "electron": "^18.0.1",
+    "electron": "^18.0.4",
     "kioskboard": "^2.2.0",
     "merge-audio-buffers": "^1.0.0",
     "mic": "^2.1.2",
