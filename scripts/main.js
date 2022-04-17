@@ -1,6 +1,8 @@
 const electron = require('electron');
+const jsonData = require('keybinds.json'); 
 const {ipcRenderer} = electron;
-const FRAMERATE = 0.5;
+let FRAMERATE = parseInt(jsonData["fps"]);
+let numRowClosed = 0;
 const button = document.getElementById('arrow-button');
 const tf = require("@tensorflow/tfjs");
 //var toWav = require('audiobuffer-to-wav')
@@ -284,7 +286,11 @@ button2.addEventListener("click", ()=>{
                                 //require("fs").writeFileSync("test.txt", t2.dataSync().toString());
                             }
                             else{
-                                console.log("Eyes Closed!");
+                                console.log("Eyes Closed Once!");
+                                numRowClosed += 1;
+                                if(numRowClosed >= (2 / FRAMERATE)){
+                                    console.log("Eyes Closed For Two Seconds");
+                                }
                             }
                         //});
                     });
