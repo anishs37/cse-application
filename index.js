@@ -6,6 +6,7 @@ const readline = require('readline')
 const fs = require('fs')
 const VirtualKeyboard = require('electron-virtual-keyboard');
 const {app, BrowserWindow, Menu, ipcMain} = electron
+let vkb;
 // SET ENV
 process.env.NODE_ENV = 'development'
 let mainWindow

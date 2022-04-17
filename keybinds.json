@@ -24,7 +24,7 @@
         "scroll right"
     ],
     "fps": [
-        "fps",
+        2.0,
         "change fps rate"
     ],
     "type": [
