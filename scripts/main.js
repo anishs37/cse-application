@@ -88,7 +88,7 @@ let segmodel, gzmodel;
 let tims = new Array();
 let runningmid = 0;
 tf.loadLayersModel("../segmentation_256/model.json").then((mod) => {segmodel = mod}).catch((e) => {console.log(e); return e});
-tf.loadLayersModel("../tracking_3/model.json").then((mod) => {gzmodel = mod}).catch((e) => {console.log(e); return e});
+tf.loadLayersModel("../tracking_4/model.json").then((mod) => {gzmodel = mod}).catch((e) => {console.log(e); return e});
 button.addEventListener('click', function() {
     if(button.innerText.toUpperCase() == "Enable Keyboard".toUpperCase()){
         ipcRenderer.send('keyboard:open')

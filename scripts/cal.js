@@ -7,7 +7,7 @@ let runningmid = 0;
 const tf = require("@tensorflow/tfjs");
 let segmodel, gzmodel;
 tf.loadLayersModel("../segmentation_256/model.json").then((mod) => {segmodel = mod}).catch((e) => {console.log(e); return e});
-tf.loadLayersModel("../tracking_3/model.json").then((mod) => {gzmodel = mod}).catch((e) => {console.log(e); return e});
+tf.loadLayersModel("../tracking_4/model.json").then((mod) => {gzmodel = mod}).catch((e) => {console.log(e); return e});
 /*
     top-left: tl
     top-right: tr
