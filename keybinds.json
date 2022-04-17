@@ -23,6 +23,10 @@
         "right",
         "scroll right"
     ],
+    "fps": [
+        "fps",
+        "change fps rate"
+    ],
     "type": [
         "type",
         "disables eye ctonrol and other word keybinds; listens for words to type"
