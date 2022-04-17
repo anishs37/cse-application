@@ -1,6 +1,6 @@
 const electron = require('electron');
 const {ipcRenderer} = electron;
-const FRAMERATE = 0.5; 
+const FRAMERATE = 2; 
 let runningmid = 0;
 const tf = require("@tensorflow/tfjs");
 let segmodel, gzmodel;

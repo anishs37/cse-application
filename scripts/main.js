@@ -1,7 +1,8 @@
 const electron = require('electron');
-const jsonData = require('../keybinds.json'); 
+const fs = require("fs")
+const jsonData = JSON.parse(fs.readFileSync('keybinds.json')); 
 const {ipcRenderer} = electron;
-let FRAMERATE = parseFloat(jsonData["fps"]);
+let FRAMERATE = parseFloat(jsonData["fps"][0]);
 let numRowClosed = 0;
 const button = document.getElementById('arrow-button');
 const tf = require("@tensorflow/tfjs");
@@ -288,6 +289,7 @@ button2.addEventListener("click", ()=>{
                                 numRowClosed += 1;
                                 if(numRowClosed >= (2 / FRAMERATE)){
                                     console.log("Eyes Closed For Two Seconds");
+                                    ipcRenderer.send("keyboard:open")
                                 }
                             }
                         //});
