@@ -167,7 +167,7 @@ ipcMain.on("rc", (e) =>{
     robot.mouseClick("right");
 });
 ipcMain.on("mm", (e, xc, yc) => {
-    console.log([xc, yc]);
+    //console.log([xc, yc]);
     let ss = robot.getScreenSize();
     let sx = ss.width;
     let sy = ss.height;
