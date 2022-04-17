@@ -17,8 +17,8 @@ tf.loadLayersModel("../tracking_3/model.json").then((mod) => {gzmodel = mod}).ca
     center-bottom: cb
     center: c
 */
-let places = ["tl", "tr", "bl", "br"];
-let locs = {};
+let places = ["tl", "ct", "tr", "cr", "br", "cb", "bl", "cl"];
+let locs = new Array();
 function appear(place) {
     document.getElementById(place).style.visibility = "visible";
 }
@@ -147,17 +147,32 @@ setTimeout(()=>{
                 }, 2000);
                 setTimeout(() => {
                     clearInterval(intervalId);
-                    locs[p] = tlocs;
+                    locs[locs.length] = tlocs;
                     disappear(p);
                 }, 12000);
             }, index * 12000);
         });
         setTimeout(() =>{
-            console.log(locs);
+            let olocs = {}
+            for(let i = 0; i < locs.length; i++){
+                ar = locs[i]
+                let sumx = 0;
+                let sumy = 0;
+                ar.forEach((v) =>{
+                    sumx += v[0];
+                    sumy += v[1];
+                });
+                olocs[places[i]] = [sumx/ar.length, sumy/ar.length];
+            }
+            olocs["wmid"] = (olocs["ct"][0] + olocs["cb"][0])/2;
+            olocs["lhmid"] = olocs["cl"][1];
+            olocs["rhmid"] = olocs["cr"][1];
+            console.log(olocs);
+            require("fs").writeFileSync("caldata.json", JSON.stringify(olocs));
             inst.style.visibility = "visible";
             inst.innerText = "Finished. Thank you."
             setTimeout(()=>{
-                //ipcRenderer.send("close:cal")
+                ipcRenderer.send("close:cal")
             }, 5000);
-        }, places.length * 12000);
+        }, (places.length+0.3) * 12000);
 }, 5000);
