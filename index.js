@@ -163,10 +163,28 @@ ipcMain.on("rc", (e) =>{
     robot.mouseClick("right");
 });
 ipcMain.on("mm", (e, xc, yc) => {
+    console.log([xc, yc]);
     let ss = robot.getScreenSize();
     let sx = ss.width;
     let sy = ss.height;
-    robot.moveMouse((xc-1.2)/3.5 * sx, (yc-2.6)/4.5 * sy);
+    let caldata = JSON.parse(fs.readFileSync("caldata.json"));
+    if(xc < caldata["wmid"]){
+        if(yc < caldata["lhmid"]){
+            robot.moveMouse((xc - caldata["tl"][0])/caldata["ct"][0] * 2 * sx, (yc - caldata["tl"][1])/caldata["cl"][1] * 2 * sy);
+        }
+        else{
+            robot.moveMouse((xc - caldata["bl"][0])/caldata["cb"][0] * 2 * sx, (yc - caldata["cl"][1])/caldata["bl"][1] * 2 * sy);
+        }
+    }
+    else{
+        if(yc < caldata["rhmid"]){
+            robot.moveMouse((xc - caldata["ct"][0])/caldata["tr"][0] * 2 * sx, (yc - caldata["tr"][1])/caldata["cr"][1] * 2 * sy);
+        }
+        else{
+            robot.moveMouse((xc - caldata["cb"][0])/caldata["br"][0] * 2 * sx, (yc - caldata["cr"][1])/caldata["br"][1] * 2 * sy);
+        }
+    }
+    //robot.moveMouse((xc-1.2)/3.5 * sx, (yc-2.6)/4.5 * sy);
 });
 ipcMain.on('keys:update', function(e, newKeys) {
     fs.writeFile('./keybinds.json', JSON.stringify(newKeys), (err) => {
