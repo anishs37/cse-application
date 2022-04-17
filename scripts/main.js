@@ -4,6 +4,7 @@ const jsonData = JSON.parse(fs.readFileSync('keybinds.json'));
 const {ipcRenderer} = electron;
 let FRAMERATE = parseFloat(jsonData["fps"][0]);
 let numRowClosed = 0;
+let twoeyes = new Array();
 const button = document.getElementById('arrow-button');
 const tf = require("@tensorflow/tfjs");
 //var toWav = require('audiobuffer-to-wav')
@@ -209,6 +210,7 @@ button2.addEventListener("click", ()=>{
                                 let midpoint = Math.floor((left + right) / 2);
                                 //console.log([width, height])
                                 if(width / height > 2.8){
+                                    numRowClosed = 0;
                                     console.log("Two Eyes Open");
                                     runningmid = midpoint;
                                     let rightofleft = midpoint - 25;
@@ -267,11 +269,25 @@ button2.addEventListener("click", ()=>{
                                         //let yc = pred[1] * 115.7;
                                         //console.log(xc);
                                         //console.log(yc);
-                                        ipcRenderer.send("mm", pred[0], pred[1]);
+                                        if(twoeyes.length >= Math.min(FRAMERATE*2, 6)){
+                                            let sumx = 0;
+                                            let sumy = 0;
+                                            for(let i = 0; i < twoeyes.length; i++){
+                                                sumx += twoeyes[i][0];
+                                                sumy += twoeyes[i][1];
+                                            }
+                                            ipcRenderer.send("mm", sumx/twoeyes.length, sumy/twoeyes.length);
+                                            twoeyes = new Array();
+                                        }
+                                        else{
+                                            twoeyes[twoeyes.length] = [pred[0], pred[1]];
+                                        }
                                     });
                                 }
                                 else{
                                     console.log("One Eye Open");
+                                    twoeyes = new Array();
+                                    numRowClosed = 0;
                                     if(midpoint <= runningmid){
                                         console.log("Right Eye Open");
                                         ipcRenderer.send("lc");
@@ -286,8 +302,10 @@ button2.addEventListener("click", ()=>{
                             }
                             else{
                                 console.log("Eyes Closed Once!");
+                                twoeyes = new Array();
                                 numRowClosed += 1;
                                 if(numRowClosed >= (2 / FRAMERATE)){
+                                    numRowClosed = 0;
                                     console.log("Eyes Closed For Two Seconds");
                                     ipcRenderer.send("keyboard:open")
                                 }

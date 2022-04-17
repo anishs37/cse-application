@@ -1,6 +1,7 @@
 const electron = require('electron');
 const {ipcRenderer} = electron;
-const FRAMERATE = 2; 
+const jsonData = JSON.parse(fs.readFileSync('keybinds.json')); 
+let FRAMERATE = parseFloat(jsonData["fps"][0]);
 let runningmid = 0;
 const tf = require("@tensorflow/tfjs");
 let segmodel, gzmodel;
