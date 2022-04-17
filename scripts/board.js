@@ -11,7 +11,8 @@ function enterEvent(e) {
     //console.log(e.code)
   if(e.code == "Enter") {
     //console.log("here")
-      text = input.innerText
+      text = input.value
       ipcRenderer.send('board:close', text);
+      //ipcRenderer.send('type', text)
   }
 }

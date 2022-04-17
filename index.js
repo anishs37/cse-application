@@ -104,9 +104,9 @@ function createKeyboardWindow() {
     ipcMain.on('board:close', function(e, text) {
         if(boardWindow != null)
             boardWindow.close();
-            console.log(text)
-            robot.typeStringDelayed(text, 180);
-            robot.keyTap("enter")
+            // console.log(text)
+            // robot.typeStringDelayed(text, 180);
+            // robot.keyTap("enter")
     });
 }
 // Create menu template
@@ -167,7 +167,7 @@ ipcMain.on("rc", (e) =>{
     robot.mouseClick("right");
 });
 ipcMain.on("mm", (e, xc, yc) => {
-    //console.log([xc, yc]);
+    console.log([xc, yc]);
     let ss = robot.getScreenSize();
     let sx = ss.width;
     let sy = ss.height;
