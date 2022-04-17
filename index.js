@@ -95,17 +95,19 @@ function createKeyboardWindow() {
         protocol: 'file:',
         slashes: true
     }));
+    vkb = new VirtualKeyboard(boardWindow.webContents);
     // Garbage collection handle
     boardWindow.on('close', function() {
         boardWindow = null
+        vkb = null
     });
     ipcMain.on('board:close', function(e, text) {
         if(boardWindow != null)
             boardWindow.close();
+            console.log(text)
             robot.typeStringDelayed(text, 180);
             robot.keyTap("enter")
     });
-    vkb = new VirtualKeyboard(boardWindow.webContents);
 }
 // Create menu template
 const mainMenuTemplate = [

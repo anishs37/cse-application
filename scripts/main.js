@@ -151,7 +151,7 @@ button2.addEventListener("click", ()=>{
     }
     else{
         time = dnow;
-        if (button2.innerText.toUpperCase() == "See Yourself! Enable Camera".toUpperCase()){
+        if (button2.innerText.toUpperCase() == "Enable Camera".toUpperCase()){
             navigator.getUserMedia({video: true, audio: false}, (localMediaStream) => {
                 const video = document.querySelector("#videoElement");
                 video.srcObject = localMediaStream;
@@ -307,7 +307,7 @@ button2.addEventListener("click", ()=>{
             });
             video.srcObject = null;
             clearInterval(intervalId);
-            button2.innerText = "See Yourself! Enable Camera";
+            button2.innerText = "Enable Camera";
         }
     }
 });
