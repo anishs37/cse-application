@@ -84,6 +84,7 @@ let segmodel, gzmodel;
 let tims = new Array();
 let runningmid = 0;
 tf.loadLayersModel("../segmentation_256/model.json").then((mod) => {segmodel = mod}).catch((e) => {console.log(e); return e});
+tf.loadLayersModel("../tracking_3/model.json").then((mod) => {gzmodel = mod}).catch((e) => {console.log(e); return e});
 button.addEventListener('click', function() {
     if(button.innerText.toUpperCase() == "Enable".toUpperCase()){
         //ipcRenderer.send('listener:start');
@@ -131,7 +132,6 @@ button.addEventListener('click', function() {
         button.innerText = "Enable";
     }
 });
-tf.loadLayersModel("../tracking_3/model.json").then((mod) => {gzmodel = mod}).catch((e) => {console.log(e); return e});
 const button2 = document.querySelector("#eye-button");
 let intervalId;
 let time = Date.now();
@@ -153,9 +153,8 @@ button2.addEventListener("click", ()=>{
             navigator.getUserMedia({video: true, audio: false}, (localMediaStream) => {
                 const video = document.querySelector("#videoElement");
                 video.srcObject = localMediaStream;
-                ipcRenderer.send("setvid", video)
                 intervalId = setInterval(() =>{
-                    let ttim = Date.now();
+                    //let ttim = Date.now();
                     let tr = video.getBoundingClientRect();
                     let ofscanv = new OffscreenCanvas(tr.width, tr.height);
                     let ctx = ofscanv.getContext('2d');
