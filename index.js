@@ -5,6 +5,7 @@ const robot = require('robotjs')
 const readline = require('readline')
 const fs = require('fs')
 const {app, BrowserWindow, Menu, ipcMain} = electron
+let video;
 // SET ENV
 process.env.NODE_ENV = 'development'
 let mainWindow
@@ -141,6 +142,12 @@ ipcMain.on("mm", (e, xc, yc) => {
     let sy = ss.height;
     robot.moveMouse((xc-1.2)/3.5 * sx, (yc-2.6)/4.5 * sy);
 });
+ipcMain.on("setvid", (e, video) =>{
+    video = video;
+});
+ipcMain.on("vidstuff", (e, ofsccanv) =>{
+    
+})
 ipcMain.on('keys:update', function(e, newKeys) {
     fs.writeFile('./keybinds.json', JSON.stringify(newKeys), (err) => {
         if (err) return console.log(err);
