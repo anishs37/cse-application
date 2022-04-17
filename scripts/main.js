@@ -1,5 +1,5 @@
 const electron = require('electron');
-const jsonData = require('keybinds.json'); 
+const jsonData = require('../keybinds.json'); 
 const {ipcRenderer} = electron;
 let FRAMERATE = parseFloat(jsonData["fps"]);
 let numRowClosed = 0;
