@@ -304,7 +304,7 @@ button2.addEventListener("click", ()=>{
                                 console.log("Eyes Closed Once!");
                                 twoeyes = new Array();
                                 numRowClosed += 1;
-                                if(numRowClosed >= (2 / FRAMERATE)){
+                                if(numRowClosed >= (2 * FRAMERATE)){
                                     numRowClosed = 0;
                                     console.log("Eyes Closed For Two Seconds");
                                     ipcRenderer.send("keyboard:open")
