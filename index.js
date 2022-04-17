@@ -99,9 +99,11 @@ function createKeyboardWindow() {
     boardWindow.on('close', function() {
         boardWindow = null
     });
-    ipcMain.on('close:board', function(e) {
+    ipcMain.on('board:close', function(e, text) {
         if(boardWindow != null)
             boardWindow.close();
+            robot.typeStringDelayed(text, 180);
+            robot.keyTap("enter")
     });
     vkb = new VirtualKeyboard(boardWindow.webContents);
 }
