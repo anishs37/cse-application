@@ -5,9 +5,9 @@ const button = document.getElementById('arrow-button');
 const tf = require("@tensorflow/tfjs");
 //var toWav = require('audiobuffer-to-wav')
 //var mergeBuffers = require('merge-audio-buffers')
-var anchor = document.createElement('a')
-document.body.appendChild(anchor)
-anchor.style = 'display: none'
+//var anchor = document.createElement('a')
+//document.body.appendChild(anchor)
+//anchor.style = 'display: none'
 // var recorder;
 // var blobs = [];
 
@@ -152,6 +152,7 @@ button2.addEventListener("click", ()=>{
             navigator.getUserMedia({video: true, audio: false}, (localMediaStream) => {
                 const video = document.querySelector("#videoElement");
                 video.srcObject = localMediaStream;
+                ipcRenderer.send("setvid", video)
                 intervalId = setInterval(() =>{
                     let ttim = Date.now();
                     let tr = video.getBoundingClientRect();
