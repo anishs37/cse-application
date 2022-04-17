@@ -11,8 +11,7 @@ Multiple frameworks, languages, and platforms were utilized to build the applica
 ## Installation
 1. Install RobotJS <a href="http://robotjs.io/">here</a>.
 2. Install Electron <a href="https://www.npmjs.com/package/electron">here</a>.
-3. In the terminal, type 
-`npm run rebuild-robotjs`.
+3. In the terminal, type `nodejs install` and then `npm run rebuild-robotjs`.
 4. In the terminal, type `npm start` to start the electron app.
 ## Features
 - [x] Customizable hotkeys and features
